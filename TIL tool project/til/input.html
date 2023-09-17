@@ -1,9 +1,22 @@
-<h1>Today I Learned</h1>
-<p>This is a sample TIL post in Markdown format. It contains a title, some paragraphs, a code snippet, and a list.</p>
-<h2>Markdown Basics</h2>
-<p>Markdown is a lightweight markup language that allows you to easily format text.</p>
-<p>Here's a code snippet in Python:</p>
-<p>```python
-def hello_world():
-    print("Hello, world!")</p>
-<p>hello_world()</p>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<p>This Python script converts Markdown files to HTML and optionally applies custom styling. Here are the key functions and features:</p>
+
+<ol>
+<li><p><code>convert_to_html</code>: Converts Markdown text to HTML using the <code>markdown2</code> library.</p></li>
+<li><p><code>process_file</code>: Reads an input Markdown file, converts it to HTML, and writes the result to an output HTML file. Optionally, it can apply custom styling specified by a stylesheet URL.</p></li>
+<li><p><code>main</code>: Parses command-line arguments using <code>argparse</code>, including the input Markdown file, output folder, and custom stylesheet URL. It then creates the output folder, if needed, and calls <code>process_file</code> to perform the conversion.</p></li>
+</ol>
+
+<p>In summary, this script provides a simple way to convert Markdown files to HTML, allowing users to specify custom styling via a stylesheet URL.</p>
+
+</body>
+</html>
