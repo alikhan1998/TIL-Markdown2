@@ -1,10 +1,18 @@
 import os
 import argparse
 import markdown
+import shutil
 
 def convert_to_html(markdown_text):
-    # Convert Markdown to HTML
-    html_content = markdown.markdown(markdown_text)
+    # Split text into paragraphs based on two consecutive newline characters
+    paragraphs = markdown_text.split("\n\n")
+    
+    # Wrap each paragraph in <p>...</p> tags
+    paragraphs = ["<p>{}</p>".format(paragraph.strip()) for paragraph in paragraphs]
+    
+    # Combine paragraphs into HTML content
+    html_content = "\n".join(paragraphs)
+    
     return html_content
 
 def process_file(input_file, output_folder):
@@ -30,8 +38,12 @@ def main():
     parser.add_argument('-o', '--output', default='til', help='Output directory for HTML files')
     args = parser.parse_args()
 
-    # Create the output folder if it doesn't exist
-    os.makedirs(args.output, exist_ok=True)
+    # Remove existing 'til' folder if it exists
+    if os.path.exists(args.output):
+        shutil.rmtree(args.output)
+    
+    # Create a new 'til' folder
+    os.makedirs(args.output)
 
     # Process the input (file or folder)
     if os.path.isfile(args.input):
