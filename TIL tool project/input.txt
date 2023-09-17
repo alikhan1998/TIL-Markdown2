@@ -1,0 +1,15 @@
+# Today I Learned
+
+This is a sample TIL post in Markdown format. It contains a title, some paragraphs, a code snippet, and a list.
+
+## Markdown Basics
+
+Markdown is a lightweight markup language that allows you to easily format text.
+
+Here's a code snippet in Python:
+
+```python
+def hello_world():
+    print("Hello, world!")
+
+hello_world()
