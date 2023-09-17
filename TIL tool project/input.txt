@@ -1,15 +1,9 @@
-# Today I Learned
+This Python script converts Markdown files to HTML and optionally applies custom styling. Here are the key functions and features:
 
-This is a sample TIL post in Markdown format. It contains a title, some paragraphs, a code snippet, and a list.
+1. `convert_to_html`: Converts Markdown text to HTML using the `markdown2` library.
 
-## Markdown Basics
+2. `process_file`: Reads an input Markdown file, converts it to HTML, and writes the result to an output HTML file. Optionally, it can apply custom styling specified by a stylesheet URL.
 
-Markdown is a lightweight markup language that allows you to easily format text.
+3. `main`: Parses command-line arguments using `argparse`, including the input Markdown file, output folder, and custom stylesheet URL. It then creates the output folder, if needed, and calls `process_file` to perform the conversion.
 
-Here's a code snippet in Python:
-
-```python
-def hello_world():
-    print("Hello, world!")
-
-hello_world()
+In summary, this script provides a simple way to convert Markdown files to HTML, allowing users to specify custom styling via a stylesheet URL.
