@@ -1,22 +1,35 @@
 import os
 import argparse
 import markdown2
+import re
 
 def convert_to_html(markdown_text):
     # Convert Markdown to HTML
+    markdown_text = re.sub(r'\*([^*]+)\*', r'<em>\1</em>', markdown_text)
+    markdown_text = re.sub(r'_([^_]+)_', r'<em>\1</em>', markdown_text)
     return markdown2.markdown(markdown_text)
 
 def process_file(input_file, output_folder, stylesheet_url=None):
     # Read the content of the input file
     with open(input_file, 'r') as file:
-        markdown_text = file.read()
+        content = file.read()
 
-    # Convert Markdown to HTML
-    html_content = convert_to_html(markdown_text)
+    # Determine the file extension
+    _, file_extension = os.path.splitext(input_file)
+
+    if file_extension.lower() == '.md':
+        # Markdown file detected, parse it
+        html_content = convert_to_html(content)
+    elif file_extension.lower() == '.txt':
+        # Text file detected, no changes needed
+        html_content = content
+    else:
+        print(f"Unsupported file type: {file_extension}")
+        return
 
     # Create the output file path
     input_filename = os.path.basename(input_file)
-    output_file = os.path.join(output_folder, input_filename.replace('.txt', '.html'))
+    output_file = os.path.join(output_folder, input_filename.replace('.txt', '.html').replace('.md', '.html'))
 
     # Write the HTML content to the output file
     with open(output_file, 'w') as file:
@@ -41,7 +54,7 @@ def process_file(input_file, output_folder, stylesheet_url=None):
 def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description='TIL Tool - Convert Markdown to HTML')
-    parser.add_argument('input', help='Input .txt file')
+    parser.add_argument('input', help='Input .txt or .md file')
     parser.add_argument('-o', '--output', default='til', help='Output directory for HTML files')
     parser.add_argument('-s', '--stylesheet', help='Custom stylesheet URL')
     args = parser.parse_args()
