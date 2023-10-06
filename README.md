@@ -30,11 +30,10 @@ To convert all Markdown files in a folder, provide the folder path:
 python til_converter.py /path/to/folder
 
 ## Example 3: Convert a Single File Using Options Specified in a Config File
-```bash
+
 # Option 1: use command line arguments:
 python til_converter.py examples/sample.txt --output "./build" 
 --stylesheet "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
 
 # Option 2: use a config file
 python til_converter.py examples/sample.txt -c examples/config.toml
-```
