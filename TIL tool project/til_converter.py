@@ -1,6 +1,7 @@
 import os
 import argparse
 import markdown2
+from tomlkit.toml_file import TOMLFile
 
 def convert_to_html(markdown_text):
     # Convert Markdown to HTML
@@ -37,6 +38,23 @@ def process_file(input_file, output_folder, stylesheet_url=None):
 
         # Close the HTML tags
         file.write('\n</body>\n</html>')
+
+def get_config_file_data(config_file):
+    """
+    Reads a config file and returns the data in a TOMLDocument object.
+    A TOMLDocument object can be used the same as a dictionary object.
+ 
+    Args:
+        config_file (String): the path of the config file (.toml file)
+ 
+    Returns:
+        TOMLDocument: the config file contents if read was successful
+        None: if read was unsuccessful (invalid config path, invalid config file contents)
+    """
+    try:
+        return TOMLFile(config_file).read()
+    except:
+        return None
 
 def main():
     # Parse command-line arguments
