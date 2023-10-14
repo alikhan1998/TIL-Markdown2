@@ -8,6 +8,7 @@ To use TIL Converter, you need to have Python and the required libraries install
 
 ```bash
 pip install markdown
+pip install tomlkit
 
 ## Usage
 To convert a Markdown file to HTML, run the following command:
@@ -16,6 +17,7 @@ python til_converter.py input.txt
 Command-Line Options
 -o, --output: Specify the output directory (default is "til").
 -s, --stylesheet: Use a custom CSS stylesheet.
+-c, --config: Use a config file to specify command-line options.
 ...
 
 ## Examples
@@ -27,5 +29,5 @@ python til_converter.py post.txt
 To convert all Markdown files in a folder, provide the folder path:
 python til_converter.py /path/to/folder
 
-
-
+## Example 3: Convert a Single File Using Options Specified in a Config File
+python til_converter.py examples/sample.txt -c examples/config.toml
