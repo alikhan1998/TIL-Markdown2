@@ -4,17 +4,17 @@ import sys
 import markdown2
 from tomlkit.toml_file import TOMLFile
 
-def convert_to_html(markdown_text):
-    # Convert Markdown to HTML
-    return markdown2.markdown(markdown_text)
+def convert_to_html(markdown_text, metadata):
+    # Convert Markdown to HTML with metadata
+    return markdown2.markdown(markdown_text, extras={"metadata": metadata})
 
-def process_file(input_file, output_folder, stylesheet_url=None):
+def process_file(input_file, output_folder, metadata, stylesheet_url=None):
     # Read the content of the input file
     with open(input_file, 'r') as file:
         markdown_text = file.read()
 
-    # Convert Markdown to HTML
-    html_content = convert_to_html(markdown_text)
+    # Convert Markdown to HTML with metadata
+    html_content = convert_to_html(markdown_text, metadata)
 
     # Create the output file path
     input_filename = os.path.basename(input_file)
@@ -67,6 +67,7 @@ def main():
     parser.add_argument('-o', '--output', default='til', help='Output directory for HTML files')
     parser.add_argument('-s', '--stylesheet', help='Custom stylesheet URL')
     parser.add_argument('-c', '--config', help='Use config file instead of command-line args')
+    parser.add_argument('-m', '--metadata', help='Metadata input for HTML', default='')
     args = parser.parse_args()
 
     # Check if user has opted to use a config file
@@ -101,8 +102,8 @@ def main():
     # Create the output folder if it doesn't exist
     os.makedirs(output_path, exist_ok=True)
 
-    # Process the input file
-    process_file(args.input, output_path, stylesheet_url)
+    # Process the input file with metadata
+    process_file(args.input, output_path, args.metadata, stylesheet_url)
 
 if __name__ == '__main__':
     main()
